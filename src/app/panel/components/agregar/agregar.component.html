@@ -1,0 +1,103 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{page_title}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="content">
+  <div class="row">
+    <div class="col-md-6">
+      <form #addManual="ngForm" class="card card-secondary">
+        <div class="card-header">
+          <h3 class="card-title">Datos</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Titulo</label>
+            <input required type="text" name="title" #title="ngModel" [(ngModel)]="manual.title" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Descripción</label>
+            <textarea required name="description" #description="ngModel" [(ngModel)]="manual.description"
+              class="form-control" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Precio MXN</label>
+            <input required type="number" oninput="this.value = Math.abs(this.value)" name="price" [min]="1"
+              #price="ngModel" [(ngModel)]="manual.price" class="form-control">
+            <span *ngIf="price.value <= 0 && price.touched" class="badge badge-danger">El precio no puede ser 0</span>
+          </div>
+          <div class="form-group">
+            <label>Cantidad</label>
+            <input required type="number" oninput="this.value = Math.abs(this.value)" name="stock" [min]="1"
+              #stock="ngModel" [(ngModel)]="manual.stock" class="form-control">
+            <span *ngIf="stock.value <= 0 && stock.touched" class="badge badge-danger">El precio no puede ser 0</span>
+          </div>
+          <div class="form-group">
+            <label>Autor</label>
+            <input required type="text" name="author" #author="ngModel" [(ngModel)]="manual.author"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Tecnología</label>
+            <input required type="text" name="technology" #technology="ngModel" [(ngModel)]="manual.technology"
+              class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Fichero</label>
+          </div>
+          <div class="form-group">
+            <label class="bg-primary text-white rounded" id="file" style="cursor:pointer;">
+              Seleccionar un archivo PDF o ZIP
+              <input required name="fichero" type="file" #fichero accept="application/pdf,application/zip"
+                style="display:none" />
+            </label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <div class="card card-secondary">
+        <div class="card-header">
+          <h3 class="card-title">Imagen</h3>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Miniatura del manual</label>
+          </div>
+          <div class="form-group d-flex justify-content-center">
+            <img class="rounded" [src]="srcImage || 'assets/manual.png'" height="300px" width="300px">
+          </div>
+          <div class="form-group d-flex justify-content-center">
+            <label class="bg-primary text-white rounded" id="file" style="cursor:pointer;">
+              Seleccionar imagen
+              <input (change)="showImage(imagen.files)" name="imagen" type="file" #imagen accept="image/*"
+                style="display:none" />
+            </label>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button
+            [disabled]="cargando?true:price.value<=0?true:stock.value<=0?true:cargando?true:!addManual.form.valid?true:imagen.files.length==0?true:fichero.files.length==0?true:false"
+            (click)="onSubmit(addManual,fichero.files,imagen.files)" type="button" class="btn btn-success">
+            <i *ngIf="cargando?true:false" class="fas fa-pulse fa-circle-notch"></i> {{btnAgregar}}</button>
+          <button (click)="resetData()" type="button" class="btn btn-default float-right">Cancelar</button>
+        </div>
+        <div class="form-group card-footer">
+          <div *ngIf="status=='error' || status=='again' || status=='exito'"
+            [ngClass]="['alert', 'alert-dismissible', 'fade', 'show',status=='exito'?'alert-success':status=='error'?'alert-danger':status=='again'?'alert-danger':'']"
+            role="alert">
+            <strong *ngIf="status=='exito'">Felicidades!</strong> {{mensaje}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

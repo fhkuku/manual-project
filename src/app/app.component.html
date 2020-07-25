@@ -1,0 +1,34 @@
+<header *ngIf="!identity || identity.role=='ROLE_USER'" class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand logo_h" [routerLink]="['/inicio']"><img src="" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/inicio']" >Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Productos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Nosotros</a></li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0 nav-shop">
+                      <img *ngIf="identity" [src]="url+'avatar/'+identity.image" width="20px" height="20px" class="rounded-circle">
+                      <li *ngIf="identity" class="nav-item"> {{identity.name}}</li>
+                      <li class="text-dark"><button><i class="ti-shopping-cart">Carrito</i><span class="nav-shop__circle">3 </span></button> </li>
+                      <a *ngIf="!identity" class="text-dark" [routerLink]="['/login']"><i class="fas fa-user"></i> Login</a>
+                      <a (click)="logout()" style="cursor:pointer" *ngIf="identity" class="text-dark"><i class="fas fa-door-closed"></i> Cerrar sesión</a>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+    <router-outlet></router-outlet>
+<app-footer>
+
+</app-footer>

@@ -1,0 +1,55 @@
+ <section class="login_box_area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="login_box_img">
+          <div class="hover">
+            <h4>¿Nuevo en nuestro sitio?</h4>
+            <p>Los mejores manuales, para poder ayudarte</p>
+            <a class="button button-account"[routerLink]="['/registro']">Crear una cuenta</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="login_form_inner">
+          <h3>{{btnText}}</h3>
+
+          <form class="row login_form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" >
+            <div   *ngIf="status=='incorrect' || status=='error'" class="col-md-12">
+              <div
+              [ngClass]="['alert', 'alert-dismissible', 'fade', 'show',status=='incorrect'?'alert-danger':status=='error'?'alert-danger':'']"
+              role="alert">
+              <strong *ngIf="status=='saveOk'">Felicidades!</strong> {{mensaje}}
+              <strong *ngIf="status=='saveOk'"><a [routerLink]='["/login"]'>click aqui para iniciar sesión</a></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            </div>
+            <div class="col-md-12 form-group ">
+              <div class="input-group">
+                <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email"
+                  placeholder="Correo electronico" onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Correo electronico'" required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+              </div>
+              <span *ngIf="!email.valid && email.touched" class="badge badge-danger">Email no valido</span>
+            </div>
+            <div class="col-md-12 form-group">
+              <div class="input-group">
+                <input type="password" class="form-control" name="password" #password="ngModel"
+                  [(ngModel)]="user.password" placeholder="Contraseña" onfocus="this.placeholder = ''"
+                  onblur="this.placeholder = 'Contraseña'" required>
+              </div>
+              <span *ngIf="!password.valid && password.touched" class="badge badge-danger">Contraseña no valida</span>
+            </div>
+            <div class="col-md-12 form-group">
+              <button [disabled]="cargando?true:!loginForm.form.valid?true:false" type="submit" class="button button-login w-100">{{btnText}} <i *ngIf="cargando?true:false"
+                class="fas fa-pulse fa-circle-notch"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
