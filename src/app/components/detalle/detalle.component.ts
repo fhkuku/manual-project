@@ -5,12 +5,13 @@ import { UserService } from '../../services/user.service';
 import { ManualService } from '../../services/manual.service';
 import { ViewChild } from '@angular/core';
 import * as Swal from 'sweetalert2';
-import {global} from "../../services/global.service"
-import {CartService} from "../../services/carrito.service"
+import { global } from "../../services/global.service"
+import { CartService } from "../../services/carrito.service"
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css']
+  styleUrls: ['./detalle.component.css'],
+  providers: [ManualService, UserService, CartService]
 })
 export class DetalleComponent implements OnInit {
   public srcImage
@@ -20,31 +21,40 @@ export class DetalleComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _manualService: ManualService
+    private _manualService: ManualService,
+    private _cartService: CartService
   ) {
     this.url = global.url
-   }
+  }
 
   ngOnInit(): void {
-
+    this.getManual()
   }
-  getManual(){
-    this._route.params.subscribe((params:Params)=>{
-      let id =params["id"]
+  getManual() {
+    this._route.params.subscribe((params: Params) => {
+      let id = params["id"]
       this._manualService.getManualId(id).subscribe(
-        response=>{
-          if(response.status=="vacio"){
+        response => {
+          if (response.status == "vacio") {
             this._router.navigate(['/'])
-          }else{
+          } else {
             this.producto = response.mensaje
-            this.srcImage = this.url+"avatar/"+this.producto.image
-
-            console.log
+            this.srcImage = this.url + "avatar/" + this.producto.image
           }
-        },error=>{
+        }, error => {
           console.log(error)
         }
+      )})
+    }
+    aumentarCantidad(producto){
+      this._cartService.changeCart(producto)
+      this._cartService.currentDataCart$.subscribe(
+        response=>{
+          console.log(response)
+          localStorage.setItem("carrito",JSON.stringify(response))
+        },error=>{
+
+        }
       )
-    })
-  }
+    }
 }
