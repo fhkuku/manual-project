@@ -1,0 +1,53 @@
+<section class="order_details section-margin--small">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <img height="150px" class="" width="150px" src="../../../assets/garrapata.png" alt="">
+    </div>
+    <br>
+    <b><p class="text-center billing-alert">{{texto_success}}</p></b>
+    <div class="order_details_table">
+      <h2>{{detalle}}</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Descarga</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let venta of result.manuales">
+              <td>
+                <p>{{venta._id._id}}</p>
+              </td>
+              <td>
+                <a href="{{url+'download/'+venta._id.url}}" target="blank_">{{url+'download/'+venta._id.url}}</a>
+              </td>
+              <td>
+                <h5> x {{venta.cantidad}} </h5>
+              </td>
+              <td>
+              </td>
+            </tr>
+            <tr>
+              <td>
+
+              </td>
+              <td>
+                <h5></h5>
+              </td>
+              <td>
+                <h4>Total</h4>
+              </td>
+              <td>
+                <h4>${{result.total}} MXN</h4>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

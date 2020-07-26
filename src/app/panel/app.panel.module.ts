@@ -30,7 +30,6 @@ import { ListarComponent } from './components/listar/listar.component';
     ListarComponent
   ],
   providers:[
-
   ]
 })
 

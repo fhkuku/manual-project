@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../models/userModel"
 import {UserService} from "../../services/user.service"
 import {Router,ActivatedRoute, Params} from "@angular/router"
+import { ViewChild } from '@angular/core';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -9,6 +10,7 @@ import {Router,ActivatedRoute, Params} from "@angular/router"
   providers :[UserService]
 })
 export class RegistroComponent implements OnInit {
+  @ViewChild('file') imagenUsuario: any;
   public user:User;
   public status:string
   public mensaje:string
@@ -32,6 +34,12 @@ export class RegistroComponent implements OnInit {
     if(this.identity){
       this._router.navigate(["/inicio"])
     }
+    if(localStorage.getItem("registro")){
+      console.log("si entre perros")
+      this.status ="create"
+      this.mensaje = localStorage.getItem("registro")
+      localStorage.removeItem("registro")
+    }
   }
 
   showImage(file){
@@ -46,8 +54,9 @@ export class RegistroComponent implements OnInit {
       }
     }
   }
-  resetImage(file){
-    this.imgSrc =""
+  resetImage(){
+    this.imagenUsuario.nativeElement.value = '';
+    this.imgSrc = '';
   }
   onSubmit(form,file){
     this.cargando = true;

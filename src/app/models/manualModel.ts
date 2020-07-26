@@ -1,12 +1,14 @@
 export class Manual{
   constructor(
     public _id:string,
-    public title:String,
-    public description:String,
-    public price:Number,
-    public stock:Number,
-    public author:String,
-    public technology:String,
+    public title:string,
+    public description:string,
+    public price:number,
+    public stock:number,
+    public author:string,
+    public image:string,
+    public technology:string,
+    public cantidad:number,
     public comentarios:any){
     }
 }

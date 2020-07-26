@@ -1,0 +1,89 @@
+<section class="cart_area">
+  <div class="container">
+    <div class="cart_inner">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Total</th>
+              <th scope="col">Borrar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of carrito">
+              <td>
+                <div class="media">
+                  <div class="d-flex">
+                    <img height="150px" width="200px" [src]="url+'avatar/'+item.image" alt="">
+
+                  </div>
+                  <div class="media-body">
+                    <p>{{item.description}}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h5>${{item.price}}MXN</h5>
+              </td>
+              <td>
+                <div class="product_count">
+                  <div class="product_count">
+                    <input disabled type="number" [min]="1" name="qty" id="sst" maxlength="12" value="{{item.cantidad}}" title="Quantity:"
+                      class="input-text qty">
+                    <button (click)="aumentarCantidad(item)"
+                      class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                    <button [disabled]="item.cantidad<=1" (click)="reducirCantidad(item)"
+                      class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h5>${{item.cantidad * item.price}}</h5>
+              </td>
+              <td>
+                <span (click)="eliminarCarrito(item)" class="badge bg-danger" style="cursor: pointer;"><i
+                    class="fas fa-times-circle"></i></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+              </td>
+              <td>
+              </td>
+              <td>
+                <h5 *ngIf="carrito">Subtotal</h5>
+              </td>
+              <td>
+                <h5 *ngIf="carrito">${{total}}MXN</h5>
+              </td>
+            </tr>
+            <tr class="out_button_area">
+              <td class="d-none-l">
+              </td>
+              <td class="">
+              </td>
+              <td>
+              </td>
+              <td>
+                <div class="checkout_btn_inner d-flex align-items-center">
+                  <a class="gray_btn" [routerLink]="['/productos']">Continuar comprando</a>
+                  <input type="submit" [disabled]="cargando?true:false" style="cursor: pointer;" value=" {{btn}} "
+                    class="primary-btn ml-2" (click)="pagar()" /><i *ngIf="cargando?true:false"
+                    class="fas fa-pulse fa-circle-notch"></i>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div *ngIf="itemvacio" class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <strong>Sin productos</strong> Debes agregar productos a tu carrito
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

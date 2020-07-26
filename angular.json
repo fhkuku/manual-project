@@ -27,7 +27,9 @@
               "src/assets/vendors/bootstrap/bootstrap.min.css",
               "src/assets/vendors/themify-icons/themify-icons.css",
               "src/assets/vendors/nice-select/nice-select.css",
+              "src/assets/linericon/style.css",
               "src/css/style.css",
+              "src/css/flotante.css",
               "src/assets/panel/dist/css/adminlte.min.css"
             ],
             "scripts": [

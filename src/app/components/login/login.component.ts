@@ -3,6 +3,7 @@ import {Router,ActivatedRoute, Params} from "@angular/router"
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/userModel';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,6 +11,7 @@ import { User } from '../../models/userModel';
   providers :[UserService]
 })
 export class LoginComponent implements OnInit {
+
   public user:User
   public cargando:boolean
   public btnText:string
@@ -46,7 +48,12 @@ export class LoginComponent implements OnInit {
         this.status = response.status
         if(this.status=="ok"){
           this.identity = response.mensaje
+
           localStorage.setItem('identity',JSON.stringify(this.identity))
+
+
+
+
           console.log(this.identity)
           this._userService.iniciarSesion(this.user, true).subscribe(
             response=>{

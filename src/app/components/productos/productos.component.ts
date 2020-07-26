@@ -1,50 +1,31 @@
 import { Component, OnInit,DoCheck } from '@angular/core';
-import {UserService} from "../../services/user.service"
 import {Router,ActivatedRoute, Params} from "@angular/router"
+import { UserService } from '../../services/user.service';
 import { ManualService } from '../../services/manual.service';
-import { global } from "../../services/global.service"
 import { Manual } from '../../models/manualModel';
+import { global } from "../../services/global.service"
 import {CartService} from "../../services/carrito.service"
 import * as Swal from 'sweetalert2';
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css'],
-  providers:[UserService,ManualService,CartService]
+  selector: 'app-productos',
+  templateUrl: './productos.component.html',
+  styleUrls: ['./productos.component.css'],
+  providers: [ManualService,CartService]
 })
-export class InicioComponent implements OnInit,DoCheck {
-
-  public inicio_titulo:string
-  public inicio_subtitulo:string
-  public inicio_descripcion:string
-  public inicio_btnComprar:string
-  public inicio_tituloBanner:string
-  public inicio_manualPopular:string
-  public inicio_productos:string
-  public inicio_vendidos:string
-  public identity
-  public token
+export class ProductosComponent implements OnInit, DoCheck{
   public url
   public productos:Array<Manual> = []
   public productosArray:Array<Manual> = []
   public carritos:Array<Manual>=[]
   public swal;
+  public identity
   constructor(
     private _userService:UserService,
     private _manualService:ManualService,
-    private _router:Router,
     private _cartService:CartService,
+    private _router:Router,
   ) {
-    this.inicio_titulo = "Helps Books"
-    this.inicio_subtitulo ="Aprender es divertido"
-    this.inicio_descripcion ="Helps books, las mejores guías para aprender, practicar y manejar"
-    this.inicio_btnComprar ="Manuales populares"
-    this.inicio_productos ="Productos más"
-    this.inicio_vendidos ="vendidos"
-    this.inicio_btnComprar ="Comprar ahora"
-    this.inicio_tituloBanner="Las mejores guías y manuales al mejor precio."
     this.identity = this._userService.getIdentity()
-    this.token = this._userService.getToken()
     this.url = global.url
     this.swal = Swal.default;
    }
@@ -53,16 +34,16 @@ export class InicioComponent implements OnInit,DoCheck {
     if(this.identity && this.identity.role=="ROLE_ADMIN"){
       this._router.navigate(["/panel"])
     }
-    this.getMasVendido()
+    this.getProductos()
     this.getCarrito()
   }
   ngDoCheck(){
     this.carritos = JSON.parse(localStorage.getItem("carrito"))
    }
-  getMasVendido(){
+
+   getProductos(){
     this._manualService.masVendido().subscribe(
       response=>{
-        console.log(response)
         for(let i =0;i < response.mensaje.length; i++){
           const producto = new Manual('','','',1,1,'','','',1,'')
           producto._id = response.mensaje[i]._id
@@ -83,20 +64,10 @@ export class InicioComponent implements OnInit,DoCheck {
       }
     )
   }
-  agregar(manual){
-    this._cartService.changeCart(manual)
-    this._cartService.currentDataCart$.subscribe(x=>{
-      if(x){
-        localStorage.setItem("carrito",JSON.stringify(x))
-      }
-    })
-  }
   aumentarCantidad(producto){
-    console.log(producto)
     this._cartService.changeCart(producto)
     this._cartService.currentDataCart$.subscribe(
       response=>{
-        console.log(response)
         localStorage.setItem("carrito",JSON.stringify(response))
         this.carritos =JSON.parse(localStorage.getItem("carrito"))
         this.swal.fire({
@@ -129,7 +100,6 @@ export class InicioComponent implements OnInit,DoCheck {
     }
     this._cartService.currentDataCart$.subscribe(
       x=>{
-        console.log(x)
         localStorage.setItem("carrito",JSON.stringify(x))
         this.carritos =JSON.parse(localStorage.getItem("carrito"))
       },error=>{
@@ -138,6 +108,5 @@ export class InicioComponent implements OnInit,DoCheck {
     )
   }
   }
-  abrirModal(){
-  }
+
 }

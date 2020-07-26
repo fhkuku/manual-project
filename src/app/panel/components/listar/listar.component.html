@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row mb-2">
     <div class="col-sm-6">
-      <h1 class="m-0 text-dark">Dashboard</h1>
+      <h1 class="m-0 text-dark">{{page_title}}</h1>
     </div>
   </div>
 </div>
@@ -12,7 +12,6 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th style="width: 10px">#</th>
           <th>Titulo</th>
           <th>Descripción</th>
           <th>Precio</th>
@@ -25,17 +24,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1.</td>
-          <td>Update software</td>
-          <td>uatur minus eveniet veritatis ad assumenda quis repudiandae voluptates quo enim molestias fuga ratione accusantium eaque, dolore facilis.</td>
-          <td>$100 MXN</td>
-          <td>30</td>
-          <td>Fernando Ku</td>
-          <td>Node JS</td>
-          <td><img height="70px" width="70px" src="../../../../assets/banner.jpg"></td>
-          <td><span class="badge bg-primary">Editar</span></td>
-          <td><span class="badge bg-danger">Eliminar</span></td>
+        <tr *ngFor="let item of manual">
+          <td>{{item.title}}</td>
+          <td>{{item.description}}</td>
+          <td>$ {{item.price}} MXN</td>
+          <td>{{item.stock}}</td>
+          <td>{{item.author}}</td>
+          <td>{{item.technology}}</td>
+          <td><img height="70px" width="70px" [src]="url+'avatar/'+item.image" ></td>
+          <td><a [routerLink]="['editar',item._id]" class="badge bg-primary">Editar</a></td>
+          <td><a style="cursor:pointer" (click)="delete(item._id)" class="badge bg-danger">Eliminar</a></td>
         </tr>
       </tbody>
     </table>

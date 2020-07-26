@@ -1,8 +1,8 @@
-<section class="login_box_area">
+<section class="login_box_area section-margin">
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <div class="login_box_img">
+        <div class="login_box_img ">
           <div class="hover">
             <h4>¿Ya tienes una cuenta?</h4>
             <p>Accede a nuestro sitio y encuentra las mejores guías</p>
@@ -19,7 +19,7 @@
               <div class="">
                 <span class="input-group-addon">
                 <img width="100px" height="100px" class="rounded-circle" [src]="imgSrc || 'assets/add.png'">
-                <span *ngIf="imgSrc" (click)="resetImage(file)" class="badge badge-danger "><i class="ti-close"></i></span>
+                <span *ngIf="imgSrc" (click)="resetImage()" class="badge badge-danger "><i class="ti-close"></i></span>
               </span>
               </div>
               <label class="bg-primary text-white rounded" id="file" style="cursor:pointer;">
@@ -75,8 +75,8 @@
                 [disabled]="cargando?true:!registroForm.form.valid?true:user.password !=user.confirmPass?true:false">{{btnText}} <i *ngIf="cargando?true:false"
                   class="fas fa-pulse fa-circle-notch"></i></button>
             </div>
-            <div *ngIf="status=='saveOk' || status=='existe' || status=='vacio'"
-              [ngClass]="['alert', 'alert-dismissible', 'fade', 'show',status=='saveOk'?'alert-success':status=='existe'?'alert-danger':status=='vacio'?'alert-danger':'']"
+            <div *ngIf="status=='saveOk' || status=='existe' || status=='vacio'|| status=='create'"
+              [ngClass]="['alert', 'alert-dismissible', 'fade', 'show',status=='saveOk'?'alert-success':status=='existe'?'alert-danger':status=='vacio'?'alert-danger':status=='create'?'alert-info':'']"
               role="alert">
               <strong *ngIf="status=='saveOk'">Felicidades!</strong> {{mensaje}}
               <strong *ngIf="status=='saveOk'"><a [routerLink]='["/login"]'>click aqui para iniciar sesión</a></strong>
