@@ -14,6 +14,8 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { ConfirmacionComponent } from './components/confirmacion/confirmacion.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
+import {MomentModule} from "angular2-moment";
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { DetalleComponent } from './components/detalle/detalle.component';
     ConfirmacionComponent,
     ProductosComponent,
     DetalleComponent,
+    NosotrosComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { DetalleComponent } from './components/detalle/detalle.component';
     HttpClientModule,
     PanelModule,
     CommonModule,
+    MomentModule,
     routing,
   ],
   providers: [

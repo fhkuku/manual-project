@@ -1,0 +1,124 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{page_title}}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="invoice p-3 mb-3">
+  <!-- title row -->
+  <div class="row">
+    <div class="col-12">
+      <h4>
+        <i class="fas fa-book"></i> Helps Books, Inc.
+        <small class="float-right">{{fecha | amLocale:"es" | amDateFormat: 'YYYY-MM-DD HH:mm'}}</small>
+      </h4>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- info row -->
+  <div class="row invoice-info">
+    <div class="col-sm-4 invoice-col">
+      Datos del vendedor
+      <address>
+        <strong>Helps Books, Inc.</strong><br>
+        Calle 47 #327 por 16 sur y 18 sur<br>
+        Mérida Yucatán, México 97196<br>
+        Télefono:(999)3907912<br>
+        Correo: Helpsbooks@helpsbooks.com.mx
+      </address>
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4 invoice-col">
+      Datos del comprandor
+      <address>
+        <strong>{{detalles.user.name}}</strong><br>
+        Correo: {{detalles.user.email}}
+      </address>
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4 invoice-col">
+      <b>Invoice #007612</b><br>
+      <br>
+      <b>ID de orden:</b> {{detalles.paymentId}}<br>
+      <b>Pago realizado el:</b> {{detalles.date | amLocale:"es" | amDateFormat: 'YYYY-MM-DD HH:mm'}}<br>
+      <b>Cuenta :</b> {{detalles.PayerID}}
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+  <!-- Table row -->
+  <div class="row">
+    <div class="col-12 table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let manual of detalles.manuales">
+            <td>{{manual._id.title}}</td>
+            <td>${{manual._id.price}} MXN</td>
+            <td>X {{manual.cantidad}}</td>
+            <td>${{manual.cantidad * manual._id.price}} MXN</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+  <div class="row">
+    <!-- accepted payments column -->
+    <div class="col-6">
+      <p class="lead">Método de pago:</p>
+      <img src="../../../../assets/paypal.png" alt="Paypal">
+      <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+        El metodo de pago aqui mostrado, es el método de pago utilizado por el cliente, el cual autorizo la transacción
+      </p>
+    </div>
+    <!-- /.col -->
+    <div class="col-6">
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>Total:</th>
+              <td>${{detalles.total}} MXN</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+
+  <!-- this row will not appear when printing -->
+  <div class="row no-print">
+    <div class="col-12">
+      <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+    </div>
+  </div>
+</div>

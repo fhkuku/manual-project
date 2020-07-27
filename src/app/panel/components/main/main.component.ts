@@ -6,12 +6,14 @@ import {global} from "../../../services/global.service"
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  providers:[UserService]
 })
 export class MainComponent implements OnInit {
   public identity
   public token
   public url
+  public buscar
   constructor(
     private _userService:UserService,
     private _router:Router,
@@ -19,6 +21,7 @@ export class MainComponent implements OnInit {
     this.identity = _userService.getIdentity();
     this.token = _userService.getToken()
     this.url = global.url
+    this.buscar=""
   }
 
   ngOnInit(): void {
@@ -36,5 +39,7 @@ export class MainComponent implements OnInit {
     this.token = null
     this._router.navigate(["/login"])
   }
-
+  goBuscar(){
+    this._router.navigate(["/panel/buscar",this.buscar])
+  }
 }

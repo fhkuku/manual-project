@@ -69,6 +69,19 @@ export class ManualService{
     let headers = new HttpHeaders().set("Content-Type","application/json").set("authorization",token)
     return this._http.post(this.url+"comentario/manual/"+idManual,params,{headers:headers})
   }
+  buscar(buscarStr, token):Observable<any>{
+    let headers = new HttpHeaders().set("authorization",token)
+    return this._http.get(this.url+"buscar/"+buscarStr,{headers:headers});
+  }
+  getVentas():Observable<any>{
+    return this._http.get(this.url+"ventas");
+  }
+  getVentaById(id):Observable<any>{
+    return this._http.get(this.url+"venta/"+id)
+  }
+  getVentaByDate(date):Observable<any>{
+    return this._http.get(this.url+"venta/date/"+date)
+  }
 /*   agregarProductoCarrito(producto){
     if(!this.ca.includes(producto)){
       if(localStorage.getItem("carrito")===null){

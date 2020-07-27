@@ -8,6 +8,7 @@ import {CarritoComponent} from "./components/carrito/carrito.component"
 import {ConfirmacionComponent} from "./components/confirmacion/confirmacion.component"
 import {ProductosComponent} from './components/productos/productos.component'
 import {DetalleComponent} from "./components/detalle/detalle.component"
+import {NosotrosComponent} from "./components/nosotros/nosotros.component"
 import { Route } from '@angular/compiler/src/core';
 
 const appRoutes:Routes = [
@@ -18,6 +19,7 @@ const appRoutes:Routes = [
   {path:"confirmacion/:params",component:ConfirmacionComponent},
   {path:"productos",component:ProductosComponent},
   {path:"detalle/:id",component:DetalleComponent},
+  {path:"nosotros",component:NosotrosComponent},
   {path:"**",component:InicioComponent}
 ];
 

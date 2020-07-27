@@ -32,7 +32,7 @@
           <td>{{item.author}}</td>
           <td>{{item.technology}}</td>
           <td><img height="70px" width="70px" [src]="url+'avatar/'+item.image" ></td>
-          <td><a [routerLink]="['editar',item._id]" class="badge bg-primary">Editar</a></td>
+          <td><a [routerLink]="['/panel/editar',item._id]" class="badge bg-primary">Editar</a></td>
           <td><a style="cursor:pointer" (click)="delete(item._id)" class="badge bg-danger">Eliminar</a></td>
         </tr>
       </tbody>

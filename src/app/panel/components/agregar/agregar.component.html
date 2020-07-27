@@ -34,7 +34,7 @@
             <label>Cantidad</label>
             <input required type="number" oninput="this.value = Math.abs(this.value)" name="stock" [min]="1"
               #stock="ngModel" [(ngModel)]="manual.stock" class="form-control">
-            <span *ngIf="stock.value <= 0 && stock.touched" class="badge badge-danger">El precio no puede ser 0</span>
+            <span *ngIf="stock.value <= 0 && stock.touched" class="badge badge-danger">la cantidad no puede ser 0</span>
           </div>
           <div class="form-group">
             <label>Autor</label>

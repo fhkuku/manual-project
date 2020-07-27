@@ -1,4 +1,4 @@
 export var global={
-    url:'http://localhost:3700/api/',
+    url:'https://helps-books.herokuapp.com/api/',
     carrito:false
 }

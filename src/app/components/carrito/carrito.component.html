@@ -70,9 +70,12 @@
               <td>
                 <div class="checkout_btn_inner d-flex align-items-center">
                   <a class="btn btn-secondary" [routerLink]="['/productos']">Continuar comprando</a>
-                  <input type="submit" [disabled]="cargando?true:false" style="cursor: pointer;" value=" {{btn}} "
-                    class="btn btn-primary ml-2" (click)="pagar()" /><i *ngIf="cargando?true:false"
+                  <button type="submit" [disabled]="cargando?true:false" type="button"
+                    class="btn btn-primary ml-2" (click)="pagar()" >
+                    {{btn}}
+                    <i *ngIf="cargando?true:false"
                     class="fas fa-pulse fa-circle-notch"></i>
+                  </button>
                 </div>
               </td>
             </tr>

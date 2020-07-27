@@ -59,7 +59,7 @@ export class CarritoComponent implements OnInit, DoCheck {
     }
     this._cartService.currentDataCart$.subscribe(
       x=>{
-        console.log(x)
+
         this.carrito = x
         this.total = x.reduce((sum, current) => sum + (current.price * current.cantidad), 0);
       },error=>{
@@ -70,7 +70,7 @@ export class CarritoComponent implements OnInit, DoCheck {
       this._cartService.changeCart(producto)
       this._cartService.currentDataCart$.subscribe(
         response=>{
-          console.log(response)
+
           localStorage.setItem("carrito",JSON.stringify(response))
           this.carrito =JSON.parse(localStorage.getItem("carrito"))
         },error=>{
@@ -82,7 +82,7 @@ export class CarritoComponent implements OnInit, DoCheck {
       this._cartService.reduceCantidad(producto)
       this._cartService.currentDataCart$.subscribe(
         response=>{
-          console.log(response)
+          (response)
           localStorage.setItem("carrito",JSON.stringify(response))
           this.carrito =JSON.parse(localStorage.getItem("carrito"))
         },error=>{
@@ -91,11 +91,11 @@ export class CarritoComponent implements OnInit, DoCheck {
       )
     }
     eliminarCarrito(producto){
-      console.log(producto)
+      (producto)
       this._cartService.removeElementCart(producto)
       this._cartService.currentDataCart$.subscribe(
         x=>{
-          console.log(x)
+          (x)
           localStorage.setItem("carrito",JSON.stringify(x))
           this.carrito =JSON.parse(localStorage.getItem("carrito"))
         },
@@ -130,7 +130,6 @@ export class CarritoComponent implements OnInit, DoCheck {
         this.cargando = false
         this.btn = "Continuar con paypal"
         this.itemvacio = true
-        console.log("no tienes productos en el carrito")
       }
 
     }

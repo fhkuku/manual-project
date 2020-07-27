@@ -8,20 +8,27 @@ import { MainComponent } from './components/main/main.component';
 import { AgregarComponent } from './components/agregar/agregar.component';
 import { EditarComponent } from './components/editar/editar.component';
 import { ListarComponent } from './components/listar/listar.component';
-
+import { BuscarComponent } from './components/buscar/buscar.component';
+import { VentasComponent } from './components/ventas/ventas.component';
+import {MomentModule} from "angular2-moment";
+import { DetalleComponent } from './components/detalle/detalle.component';
 
 @NgModule({
   declarations:[
     MainComponent,
     AgregarComponent,
     EditarComponent,
-    ListarComponent
+    ListarComponent,
+    BuscarComponent,
+    VentasComponent,
+    DetalleComponent
   ],
   imports:[
     CommonModule,
     FormsModule,
     HttpClientModule,
-    PanelRoutingModule
+    PanelRoutingModule,
+    MomentModule
   ],
   exports:[
     MainComponent,

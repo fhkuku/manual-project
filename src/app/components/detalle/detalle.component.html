@@ -18,7 +18,7 @@
           </ul>
           <p>{{productos[0].description}}</p>
           <div class="product_count">
-            <a style="color: white;" onMouseOut="this.style.color='white'" onMouseOver="this.style.color='black'" class="button primary-btn" (click)="aumentarCantidad(productos[0])">Agregar al carrito</a>
+            <a style="color: white;cursor: pointer;" onMouseOut="this.style.color='white'" onMouseOver="this.style.color='black'" class="button primary-btn" (click)="aumentarCantidad(productos[0])">Agregar al carrito</a>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
                   </div>
                   <div class="media-body">
                     <h4>{{comentario.user.name}}</h4>
-                    <h5>{{comentario.user.date}}</h5>
+                    <h5>{{comentario.date | amLocal | amTimeAgo }}</h5>
                   </div>
                 </div>
                 <p>{{comentario.content}}</p>

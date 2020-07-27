@@ -61,7 +61,7 @@ export class DetalleComponent implements OnInit {
             this._router.navigate(['/'])
           } else {
 
-              console.log(this.manual)
+
               const producto = new Manual('', '', '', 1, 1, '', '', '', 1, '')
               producto._id = response.mensaje._id
               producto.title = response.mensaje.title
@@ -84,11 +84,9 @@ export class DetalleComponent implements OnInit {
     })
   }
   aumentarCantidad(producto){
-    console.log(producto)
     this._cartService.changeCart(producto)
     this._cartService.currentDataCart$.subscribe(
       response=>{
-        console.log(response)
         localStorage.setItem("carrito",JSON.stringify(response))
         this.carritos =JSON.parse(localStorage.getItem("carrito"))
         this.swal.fire({
@@ -138,7 +136,6 @@ export class DetalleComponent implements OnInit {
               this.btnText ="Publicar comentario"
               this.cargando = false
               this.manual = response.model
-              console.log(this.manual)
               form.reset()
             },
             error=>{
