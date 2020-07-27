@@ -33,7 +33,7 @@
         <div *ngFor="let manual of productos" class="col-md-6 col-lg-4 col-xl-3">
           <div class="card text-center card-product">
             <div class="card-product__img">
-              <img height="200px" width="200px" class="card-img" [src]="url+'avatar/'+manual.image" alt="">
+              <img height="200px" width="150px" class="card-img" [src]="url+'avatar/'+manual.image" alt="">
               <ul class="card-product__imgOverlay">
                 <li><button (click)="aumentarCantidad(manual)"><i class="ti-shopping-cart"></i></button></li>
               </ul>
@@ -69,22 +69,3 @@
     </div>
   </section>
 </main>
-
-<ng-template>
-    <div class="modal-header">
-        <h4 class="modal-title">
-            <span></span>
-        </h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-          </button>
-    </div>
-    <div class="modal-body">
-        <p> <span></span></p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-
-    </div>
-</ng-template>
-

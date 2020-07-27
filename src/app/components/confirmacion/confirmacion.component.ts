@@ -16,6 +16,7 @@ export class ConfirmacionComponent implements OnInit {
   ) {
     this.result =JSON.parse(this._activatedRoute.snapshot.params.params)[0]
     this.url = global.url
+    console.log(this.result)
     localStorage.removeItem("carrito")
   }
 

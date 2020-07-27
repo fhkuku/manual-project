@@ -64,6 +64,11 @@ export class ManualService{
     let headers = new HttpHeaders().set("Content-Type","application/json")
     return this._http.get(this.url+"getManuales",{headers:headers})
   }
+  agregarComentario(token, comentario,idManual):Observable<any>{
+    let params = JSON.stringify(comentario)
+    let headers = new HttpHeaders().set("Content-Type","application/json").set("authorization",token)
+    return this._http.post(this.url+"comentario/manual/"+idManual,params,{headers:headers})
+  }
 /*   agregarProductoCarrito(producto){
     if(!this.ca.includes(producto)){
       if(localStorage.getItem("carrito")===null){

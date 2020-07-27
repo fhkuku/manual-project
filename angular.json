@@ -24,7 +24,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/vendors/bootstrap/bootstrap.min.css",
+              {
+                "input": "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              },
               "src/assets/vendors/themify-icons/themify-icons.css",
               "src/assets/vendors/nice-select/nice-select.css",
               "src/assets/linericon/style.css",

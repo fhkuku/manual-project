@@ -54,10 +54,10 @@
               <td>
               </td>
               <td>
-                <h5 *ngIf="carrito">Subtotal</h5>
+                <h5 *ngIf="total">Subtotal</h5>
               </td>
               <td>
-                <h5 *ngIf="carrito">${{total}}MXN</h5>
+                <h5 *ngIf="total">${{total}}MXN</h5>
               </td>
             </tr>
             <tr class="out_button_area">
@@ -69,9 +69,9 @@
               </td>
               <td>
                 <div class="checkout_btn_inner d-flex align-items-center">
-                  <a class="gray_btn" [routerLink]="['/productos']">Continuar comprando</a>
+                  <a class="btn btn-secondary" [routerLink]="['/productos']">Continuar comprando</a>
                   <input type="submit" [disabled]="cargando?true:false" style="cursor: pointer;" value=" {{btn}} "
-                    class="primary-btn ml-2" (click)="pagar()" /><i *ngIf="cargando?true:false"
+                    class="btn btn-primary ml-2" (click)="pagar()" /><i *ngIf="cargando?true:false"
                     class="fas fa-pulse fa-circle-notch"></i>
                 </div>
               </td>

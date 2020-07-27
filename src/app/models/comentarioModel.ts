@@ -1,7 +1,7 @@
 export class Comentario{
   constructor(
-    content:String,
-    date:String,
-    user:any,
+    public content:string,
+    public date:string,
+    public user:any,
   ){}
 }

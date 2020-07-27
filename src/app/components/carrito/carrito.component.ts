@@ -111,21 +111,20 @@ export class CarritoComponent implements OnInit, DoCheck {
         if(this.identity){
           this._cartService.pagar(this.token,this.carrito,this.total).subscribe(
             response=>{
+              window.location.href = response.mensaje
               this.cargando = false
               this.btn = "Continuar con paypal"
-              window.location.href = response.mensaje
             },
             error=>{
               this.cargando = false
               this.btn = "Continuar con paypal"
-              console.log(error)
             }
           )
         }else{
-          this.cargando = false
-          this.btn = "Continuar con paypal"
           localStorage.setItem("registro", "Es necesario registrarte para poder completar la compra")
           this._router.navigate(["/registro"])
+          this.cargando = false
+          this.btn = "Continuar con paypal"
         }
       }else{
         this.cargando = false

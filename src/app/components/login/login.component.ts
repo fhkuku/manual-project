@@ -51,9 +51,6 @@ export class LoginComponent implements OnInit {
 
           localStorage.setItem('identity',JSON.stringify(this.identity))
 
-
-
-
           console.log(this.identity)
           this._userService.iniciarSesion(this.user, true).subscribe(
             response=>{

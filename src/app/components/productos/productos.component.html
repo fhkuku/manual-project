@@ -1,8 +1,8 @@
 <div class="container section-margin">
 <div class="col-xl-12 col-lg-12 col-md-12">
   <section class="lattest-product-area pb-40 category-list">
-    <div class="row">
-      <div *ngFor="let producto of productos" class="col-md-6 col-lg-4">
+    <div *ngIf="productos" class="row">
+      <div  *ngFor="let producto of productos" class="col-md-6 col-lg-4">
         <div class="card text-center card-product">
           <div class="card-product__img">
             <img height="350px" width="300px" class="card-img" [src]="url+'avatar/'+producto.image" alt="">
@@ -19,6 +19,5 @@
       </div>
     </div>
   </section>
-
 </div>
 </div>
