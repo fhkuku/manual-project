@@ -14,7 +14,7 @@
                     <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                         <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/inicio']" >Inicio</a></li>
                         <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link" [routerLink]="['/productos']"  >Productos</a></li>
-                        <li class="nav-item"  [routerLinkActive]="['active']"><a class="nav-link"[routerLink]="['/nosotros']">Nosotros</a></li>
+                        <li class="nav-item" [routerLinkActive]="['active']"><a class="nav-link"[routerLink]="['/nosotros']">Nosotros</a></li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0 nav-shop">
                       <img *ngIf="identity" [src]="url+'avatar/'+identity.image" width="20px" height="20px" class="rounded-circle">

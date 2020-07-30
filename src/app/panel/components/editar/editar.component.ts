@@ -71,7 +71,7 @@ export class EditarComponent implements OnInit {
         this.btnAgregar = 'Modificar manual';
         this.swal.fire(
           'Actualizado!',
-          'El stock ha sido actualizado',
+          'El manual ha sido actualizado',
           'success'
         );
         this._router.navigate(['/']);
